@@ -1,5 +1,5 @@
 window.addEventListener('load', () => {
-    const cube = document.querySelector('.cube');
+    const body = document.body;
 
     const hours = new Date().getHours();
     let weatherClass = '';
@@ -16,5 +16,5 @@ window.addEventListener('load', () => {
 
     const weatherDiv = document.createElement('div');
     weatherDiv.classList.add('weather', weatherClass);
-    cube.appendChild(weatherDiv);
+    body.appendChild(weatherDiv);
 });
