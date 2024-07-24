@@ -20,19 +20,19 @@ window.addEventListener('load', () => {
                     let weatherClass = '';
 
                     if (weatherId >= 200 && weatherId < 300) {
-                        weatherClass = 'rainy';
+                        weatherClass = 'rainny';
                     } else if (weatherId >= 300 && weatherId < 600) {
-                        weatherClass = 'rainy';
+                        weatherClass = 'rainny';
                     } else if (weatherId >= 600 && weatherId < 700) {
-                        weatherClass = 'snowy';
+                        weatherClass = 'cloudy';
                     } else if (weatherId >= 700 && weatherId < 800) {
                         weatherClass = 'cloudy';
                     } else if (weatherId === 800) {
                         const hours = new Date().getHours();
                         if (hours >= 6 && hours < 18) {
-                            weatherClass = 'sunny';
+                            weatherClass = 'sun';
                         } else {
-                            weatherClass = 'moonlit';
+                            weatherClass = 'moon';
                         }
                     } else if (weatherId > 800 && weatherId < 900) {
                         weatherClass = 'cloudy';
@@ -62,20 +62,18 @@ window.addEventListener('load', () => {
 
     let isDragging = false;
     let startX, startY;
-    let currentX = 20, currentY = -20;
+    let currentX = 0;
 
     const onMouseDown = (e) => {
         isDragging = true;
         startX = e.clientX - currentX;
-        startY = e.clientY - currentY;
         cube.style.cursor = 'grabbing';
     };
 
     const onMouseMove = (e) => {
         if (!isDragging) return;
         currentX = e.clientX - startX;
-        currentY = e.clientY - startY;
-        cube.style.transform = `rotateX(${currentY}deg) rotateY(${currentX}deg)`;
+        cube.style.transform = `rotateY(${currentX}deg)`;
     };
 
     const onMouseUp = () => {
