@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #e0f7fa;
+    overflow: hidden;
+}
+
+.scene {
+    width: 200px;
+    height: 200px;
+    perspective: 600px;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg) rotateY(-45deg);
+    animation: rotate 10s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+}
+
+.front  { transform: translateZ(100px); }
+.back   { transform: rotateY(180deg) translateZ(100px); }
+.right  { transform: rotateY(90deg) translateZ(100px); }
+.left   { transform: rotateY(-90deg) translateZ(100px); }
+.top    { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+@keyframes rotate {
+    from { transform: rotateX(-30deg) rotateY(-45deg); }
+    to   { transform: rotateX(-30deg) rotateY(315deg); }
+}
+
+/* Weather styles */
+.weather {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+}
+
+.sunny   { background: url('sunny.png'); }
+.cloudy  { background: url('cloudy.png'); }
+.sunset  { background: url('sunset.png'); }
+.rainy   { background: url('rainy.png'); }
+.moonlit { background: url('moonlit.png'); }
