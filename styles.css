@@ -4,9 +4,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #e0f7fa;
+    background: #fff5e1; /* Soft pastel color */
     overflow: hidden;
-    font-family: Arial, sans-serif;
+    font-family: 'Pacifico', cursive; /* Playful font */
     position: relative;
 }
 
@@ -22,7 +22,7 @@ body {
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    transform: rotateX(-20deg) rotateY(20deg);
+    transform: rotateY(0deg);
     transition: transform 0.5s;
 }
 
@@ -31,8 +31,10 @@ body {
     width: 300px;
     height: 300px;
     background: rgba(255, 255, 255, 0.9);
-    border: 2px solid #ccc;
+    border: 2px solid #ffc8dd; /* Soft pink border */
     box-sizing: border-box;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Soft shadow for cuteness */
 }
 
 .front  { transform: translateZ(150px); }
@@ -55,11 +57,11 @@ body {
     animation: fadeIn 2s;
 }
 
-.sunny   { background: url('sunny.png') no-repeat center center; }
+.sunny   { background: url('sun.png') no-repeat center center; }
 .cloudy  { background: url('cloudy.png') no-repeat center center; }
 .sunset  { background: url('sunset.png') no-repeat center center; }
-.rainy   { background: url('rainy.png') no-repeat center center; }
-.moonlit { background: url('moonlit.png') no-repeat center center; }
+.rainy   { background: url('rainny.png') no-repeat center center; }
+.moonlit { background: url('moon.png') no-repeat center center; }
 
 /* Welcome message styles */
 .welcome-message {
@@ -68,13 +70,14 @@ body {
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(255, 192, 203, 0.7); /* Soft pink background */
     color: #fff;
     font-size: 24px;
-    border-radius: 10px;
+    border-radius: 20px; /* Rounded corners */
     text-align: center;
     z-index: 1;
     animation: fadeIn 2s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Soft shadow for cuteness */
 }
 
 @keyframes fadeIn {
