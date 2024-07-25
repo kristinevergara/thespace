@@ -85,26 +85,62 @@ header {
 .top    { transform: rotateX(90deg) translateZ(150px); }
 .bottom { transform: rotateX(-90deg) translateZ(150px); }
 
-/* Weather styles */
-.weather {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.earth {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: url('earth.png') no-repeat center center;
     background-size: cover;
-    background-position: center;
-    z-index: -1;
-    animation: fadeIn 2s;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform-style: preserve-3d;
+    animation: rotateEarth 30s linear infinite;
+    z-index: 1;
+    bottom: 50px; /* Position it under the cube */
 }
 
-.sunny   { background: url('sun.png') no-repeat center center; }
-.cloudy  { background: url('cloudy.png') no-repeat center center; }
-.sunset  { background: url('sunset.png') no-repeat center center; }
-.rainy   { background: url('rainny.png') no-repeat center center; }
-.moonlit { background: url('moon.png') no-repeat center center; }
+@keyframes rotateEarth {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
 
-/* Welcome message styles */
+.rainbow-arch {
+    position: absolute;
+    top: 30px; /* Slightly above the Earth */
+    left: 0;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.weather-arc {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right, transparent, transparent 10%, rgba(255, 255, 255, 0.7) 10%, rgba(255, 255, 255, 0.7) 20%);
+    background-size: 50% 100%;
+    animation: moveArc 30s linear infinite;
+}
+
+@keyframes moveArc {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+.time-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Pacifico', cursive;
+    z-index: 1;
+}
+
 .welcome-message {
     position: absolute;
     top: 80px;
