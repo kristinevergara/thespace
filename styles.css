@@ -7,7 +7,7 @@ body {
     height: 100vh;
     background: #fff5e1; /* Soft pastel color */
     overflow: hidden;
-    font-family: 'Pacifico', cursive; /* Playful font */
+    font-family: 'Delmera'; /* Playful font */
     position: relative;
 }
 
@@ -63,7 +63,7 @@ header {
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    transform: rotateY(0deg);
+    transform: rotateX(0deg) rotateY(0deg);
     transition: transform 0.5s;
 }
 
@@ -127,37 +127,4 @@ header {
 
 @keyframes moveArc {
     from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
-}
-
-.time-display {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-size: 24px;
-    font-family: 'Pacifico', cursive;
-    z-index: 1;
-}
-
-.welcome-message {
-    position: absolute;
-    top: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    background: rgba(255, 192, 203, 0.7); /* Soft pink background */
-    color: #fff;
-    font-size: 24px;
-    border-radius: 20px; /* Rounded corners */
-    text-align: center;
-    z-index: 1;
-    animation: fadeIn 2s;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Soft shadow for cuteness */
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+    to { transform: translateX(-100%);
