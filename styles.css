@@ -1,6 +1,7 @@
 body {
     margin: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -10,11 +11,51 @@ body {
     position: relative;
 }
 
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9); /* Transparent white background */
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.header-title {
+    font-size: 24px;
+    color: #333;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header-button {
+    background: #ff6f61; /* Soft pink background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.header-button:hover {
+    background: #ff4b4b; /* Darker pink on hover */
+}
+
 .scene {
     width: 300px;
     height: 300px;
     perspective: 800px;
     cursor: grab;
+    margin-top: 60px; /* Space for the header */
 }
 
 .cube {
@@ -30,11 +71,11 @@ body {
     position: absolute;
     width: 300px;
     height: 300px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 2px solid #ffc8dd; /* Soft pink border */
+    background: #ffecb3; /* Light yellow background for cartoonish look */
+    border: 2px solid #ffcccb; /* Soft pink border */
     box-sizing: border-box;
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Soft shadow for cuteness */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for cartoon style */
 }
 
 .front  { transform: translateZ(150px); }
@@ -66,7 +107,7 @@ body {
 /* Welcome message styles */
 .welcome-message {
     position: absolute;
-    top: 20px;
+    top: 80px;
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 20px;
