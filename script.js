@@ -1,86 +1,17 @@
-window.addEventListener('load', () => {
-    const body = document.body;
+document.addEventListener('DOMContentLoaded', function() {
     const cube = document.querySelector('.cube');
-    const welcomeMessage = document.getElementById('welcome-message');
+    const personalStatement = document.querySelector('.personal-statement');
+    const projects = document.querySelector('.projects');
 
-    // Get geolocation and fetch weather
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-
-            // Use a free weather API like OpenWeatherMap
-            const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
-            const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-
-            fetch(weatherApiUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (!data.weather || !data.weather[0]) {
-                        throw new Error('Weather data is not available');
-                    }
-
-                    const weatherId = data.weather[0].id;
-                    let weatherClass = '';
-
-                    if (weatherId >= 200 && weatherId < 300) {
-                        weatherClass = 'rainny';
-                    } else if (weatherId >= 300 && weatherId < 600) {
-                        weatherClass = 'rainny';
-                    } else if (weatherId >= 600 && weatherId < 700) {
-                        weatherClass = 'cloudy';
-                    } else if (weatherId >= 700 && weatherId < 800) {
-                        weatherClass = 'cloudy';
-                    } else if (weatherId === 800) {
-                        const hours = new Date().getHours();
-                        if (hours >= 6 && hours < 18) {
-                            weatherClass = 'sun';
-                        } else {
-                            weatherClass = 'moon';
-                        }
-                    } else if (weatherId > 800 && weatherId < 900) {
-                        weatherClass = 'cloudy';
-                    }
-
-                    const weatherDiv = document.createElement('div');
-                    weatherDiv.classList.add('weather', weatherClass);
-                    body.appendChild(weatherDiv);
-
-                    const hours = new Date().getHours();
-                    let timeOfDayMessage = '';
-
-                    if (hours >= 6 && hours < 12) {
-                        timeOfDayMessage = 'Good Morning';
-                    } else if (hours >= 12 && hours < 18) {
-                        timeOfDayMessage = 'Good Afternoon';
-                    } else if (hours >= 18 && hours < 21) {
-                        timeOfDayMessage = 'Good Evening';
-                    } else {
-                        timeOfDayMessage = 'Good Night';
-                    }
-
-                    welcomeMessage.innerHTML = `${timeOfDayMessage}, Welcome to The Space`;
-                })
-                .catch(error => {
-                    console.error('Error fetching weather data:', error);
-                });
-        });
-    }
-
+    // Cube rotation
     let isDragging = false;
     let startX, startY;
-    let rotateX = 0, rotateY = 0;
+    let rotateX = -20, rotateY = 30;
 
     const onMouseDown = (e) => {
         isDragging = true;
         startX = e.clientX;
         startY = e.clientY;
-        cube.style.cursor = 'grabbing';
     };
 
     const onMouseMove = (e) => {
@@ -96,27 +27,38 @@ window.addEventListener('load', () => {
 
     const onMouseUp = () => {
         isDragging = false;
-        cube.style.cursor = 'grab';
     };
 
     cube.addEventListener('mousedown', onMouseDown);
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
 
-    // Update time in California
-    function updateRainbowArch() {
-        const now = new Date();
-        const californiaOffset = -7; // California Time Offset (PDT or PST)
-        const californiaTime = new Date(now.getTime() + (californiaOffset * 60 * 60 * 1000));
+    // Scroll effects
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
 
-        const hours = californiaTime.getHours().toString().padStart(2, '0');
-        const minutes = californiaTime.getMinutes().toString().padStart(2, '0');
-        const timeString = `${hours}:${minutes}`;
+        if (scrollPosition > windowHeight * 0.5) {
+            personalStatement.style.opacity = '1';
+        }
 
-        const rainbowArch = document.querySelector('.rainbow-arch');
-        rainbowArch.innerHTML = `<div class="time-display">${timeString}</div>`;
+        if (scrollPosition > windowHeight * 0.8) {
+            projects.style.opacity = '1';
+        }
+    });
+
+    // Stars background
+    function createStars() {
+        const starsContainer = document.querySelector('.stars-container');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            starsContainer.appendChild(star);
+        }
     }
 
-    updateRainbowArch();
-    setInterval(updateRainbowArch, 60000); // Update every minute
+    createStars();
 });
