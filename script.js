@@ -14,8 +14,17 @@ window.addEventListener('load', () => {
             const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
             fetch(weatherApiUrl)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
+                    if (!data.weather || !data.weather[0]) {
+                        throw new Error('Weather data is not available');
+                    }
+                    
                     const weatherId = data.weather[0].id;
                     let weatherClass = '';
 
@@ -56,6 +65,10 @@ window.addEventListener('load', () => {
                     }
 
                     welcomeMessage.innerHTML = `${timeOfDayMessage}, Welcome to The Space`;
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                    welcomeMessage.innerHTML = 'Error loading weather data';
                 });
         });
     }
