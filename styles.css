@@ -27,6 +27,160 @@ header {
 
 .header-title {
     font-size: 24px;
+    color: #00FFFFFF;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header-button {
+    background: #ff6f61; /* Soft pink background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Corben';
+    transition: background 0.3s;
+}
+
+.header-button:hover {
+    background: #F1948A; /* Darker pink on hover */
+}
+
+.scene {
+    width: 300px;
+    height: 300px;
+    perspective: 800px;
+    cursor: grab;
+    margin-top: 100px; /* Increased space for the header */
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg) rotateY(0deg);
+    transition: transform 0.5s;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Added shadow */
+    margin-bottom: 50px; /* Space between the cube and the Earth */
+}
+
+.face {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: #00ffecb3; /* Light yellow background for cartoonish look */
+    border: 5px solid #000000; /* Soft pink border */
+    box-sizing: border-box;
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for cartoon style */
+}
+
+.front  { transform: translateZ(150px); }
+.back   { transform: rotateY(180deg) translateZ(150px); }
+.right  { transform: rotateY(90deg) translateZ(150px); }
+.left   { transform: rotateY(-90deg) translateZ(150px); }
+.top    { transform: rotateX(90deg) translateZ(150px); }
+.bottom { transform: rotateX(-90deg) translateZ(150px); }
+
+.earth {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: url('earth.png') no-repeat center center;
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform-style: preserve-3d;
+    animation: rotateEarth 30s linear infinite;
+    z-index: 0;
+    bottom: 0; /* Positioned below the cube */
+}
+
+@keyframes rotateEarth {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+.rainbow-arch {
+    position: absolute;
+    top: 0; /* Positioned above the Earth */
+    left: 0;
+    width: 100%;
+    height: 150px; /* Adjusted height */
+    overflow: hidden;
+    z-index: 1; /* Above the Earth */
+}
+
+.weather-arc {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, transparent 10%, rgba(255, 255, 255, 0.7) 10%, rgba(255, 255, 255, 0.7) 20%);
+    background-size: 50% 100%;
+    animation: moveArc 30s linear infinite;
+}
+
+@keyframes moveArc {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+.time-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Pacifico', cursive;
+    z-index: 1;
+}
+
+.welcome-message {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background: rgba(255, 192, 203, 0.7); /* Soft pink background */
+    color: #fff;
+    font-size: 24px;
+    border-radius: 20px; /* Rounded corners */
+    text-align: center;
+    z-index: 1;
+    animation: fadeIn 2s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Soft shadow for cuteness */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9); /* Transparent white background */
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.header-title {
+    font-size: 24px;
     color: #333;
 }
 
