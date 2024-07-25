@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
                     if (!data.weather || !data.weather[0]) {
                         throw new Error('Weather data is not available');
                     }
-                    
+
                     const weatherId = data.weather[0].id;
                     let weatherClass = '';
 
@@ -52,3 +52,71 @@ window.addEventListener('load', () => {
                     body.appendChild(weatherDiv);
 
                     const hours = new Date().getHours();
+                    let timeOfDayMessage = '';
+
+                    if (hours >= 6 && hours < 12) {
+                        timeOfDayMessage = 'Good Morning';
+                    } else if (hours >= 12 && hours < 18) {
+                        timeOfDayMessage = 'Good Afternoon';
+                    } else if (hours >= 18 && hours < 21) {
+                        timeOfDayMessage = 'Good Evening';
+                    } else {
+                        timeOfDayMessage = 'Good Night';
+                    }
+
+                    welcomeMessage.innerHTML = `${timeOfDayMessage}, Welcome to The Space`;
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                });
+        });
+    }
+
+    let isDragging = false;
+    let startX, startY;
+    let rotateX = 0, rotateY = 0;
+
+    const onMouseDown = (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        cube.style.cursor = 'grabbing';
+    };
+
+    const onMouseMove = (e) => {
+        if (!isDragging) return;
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+        rotateY += deltaX * 0.5;
+        rotateX -= deltaY * 0.5;
+        cube.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        startX = e.clientX;
+        startY = e.clientY;
+    };
+
+    const onMouseUp = () => {
+        isDragging = false;
+        cube.style.cursor = 'grab';
+    };
+
+    cube.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+
+    // Update time in California
+    function updateRainbowArch() {
+        const now = new Date();
+        const californiaOffset = -7; // California Time Offset (PDT or PST)
+        const californiaTime = new Date(now.getTime() + (californiaOffset * 60 * 60 * 1000));
+
+        const hours = californiaTime.getHours().toString().padStart(2, '0');
+        const minutes = californiaTime.getMinutes().toString().padStart(2, '0');
+        const timeString = `${hours}:${minutes}`;
+
+        const rainbowArch = document.querySelector('.rainbow-arch');
+        rainbowArch.innerHTML = `<div class="time-display">${timeString}</div>`;
+    }
+
+    updateRainbowArch();
+    setInterval(updateRainbowArch, 60000); // Update every minute
+});
