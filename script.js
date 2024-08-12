@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const cube = document.querySelector('.cube');
     const personalStatement = document.querySelector('.personal-statement');
     const projects = document.querySelector('.projects');
+    const projectsButton = document.querySelector('.header-button:nth-child(2)'); // Projects is the second button
+    const contactButton = document.querySelector('.header-button:nth-child(3)');
 
     // Cube rotation
     let isDragging = false;
@@ -61,4 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     createStars();
+
+    // Smooth scroll to projects section
+    projectsButton.addEventListener('click', () => {
+        projects.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Smooth scroll to contact section
+    contactButton.addEventListener('click', () => {
+        contact.scrollIntoView({ behavior: 'smooth' });
+    });
 });
