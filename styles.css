@@ -130,16 +130,84 @@ body {
     position: relative;
 }
 
-.personal-statement, .projects {
+.personal-statement, .projects, .connect, .purpose {
     max-width: 800px;
-    margin: 0 auto 50px;
-    opacity: 0;
-    transition: opacity 1s;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.023); /* Slightly transparent background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.074);
 }
 
 .project {
-    margin-bottom: 30px; /*spacing between projects*/
+    margin-bottom: 30px;
 }
+
+.project h3 {
+    color: #ae4479; /* Matching header title color */
+}
+
+.project p, .connect p, .purpose p {
+    font-size: 16px;
+}
+
+.connect, .purpose {
+    margin-top: 50px;
+}
+
+.connect a, .purpose a {
+    color: #ae4479;
+    text-decoration: none;
+}
+
+.connect a:hover, .purpose a:hover {
+    text-decoration: underline;
+}
+
+.contact {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(172, 74, 107, 0.34);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact h2 {
+    margin-bottom: 20px;
+    color: #ae4479; /* Matching header title color */
+}
+
+.contact label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.contact input, .contact textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #dddddd13;
+    border-radius: 5px;
+}
+
+.contact button {
+    margin-top: 20px;
+    background: #ae4479;
+    color: #ffffffa4;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.contact button:hover {
+    background: #931e68;
+}
+
 
 .stars-container {
     position: fixed;
